@@ -36,7 +36,7 @@ echo $clean_output;
 
 ```
 
-## HTML Purifier, by Chris Corbyn
+## HTML Purifier
 
 HTML Purifier is a standards-compliant HTML filter library written in PHP. HTML Purifier will not only remove all malicious code (better known as XSS) with a thoroughly audited, secure yet permissive whitelist, it will also make sure your documents are standards compliant, something only achievable with a comprehensive knowledge of W3C's specifications. 
 It is released under the LGPL license.
