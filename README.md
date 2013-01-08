@@ -14,7 +14,7 @@ Copy files into **bundles/sanitize**
 
 then edit **application/bundles.php** to autoload sanitizer:
 
-	'sanitize' => array('auto' => true)
+	'sanitize' => array('auto' => true),
 	
 You can implement required functions of HTML Purifier in sanitize.php.
 
