@@ -4,22 +4,17 @@ Wrapper for HTML Purifier with the beauty of Laravel.
 
 ## Installation
 
-Installation with Artisan CLI not yet awailable.
+Installation with Artisan CLI:
+
+	php artisan bundle:install Sanitizer
+
+Manual installation:
+
 Copy files into **bundles/sanitize**
 
-then edit **application/bundles.php** to autoload messages:
+then edit **application/bundles.php** to autoload sanitizer:
 
-```php
-<?php
-
-return array(
-
-'sanitize' => array(
-	'auto' => true
-),
-);
-
-```
+	'sanitize' => array('auto' => true)
 	
 You can implement required functions of HTML Purifier in sanitize.php.
 
@@ -30,9 +25,10 @@ You can implement required functions of HTML Purifier in sanitize.php.
 ```php
 <?php
 
-$bad_input = '<script>alert("Malicious popup!! Your coding skills suck!")</script>';
+$bad_input = 'Hello!<script>alert("Malicious popup!! Your coding skills suck!")</script>';
 $clean_output = Sanitize::purify($bad_input);
-echo $clean_output;
+echo $clean_output; 
+// "Hello!"
 
 ```
 
