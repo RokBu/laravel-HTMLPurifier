@@ -26,7 +26,8 @@ You can implement required functions of HTML Purifier in sanitize.php.
 <?php
 
 $bad_input = 'Hello!<script>alert("Malicious popup!! Your coding skills suck!")</script>';
-$clean_output = Sanitize::purify($bad_input);
+$purifier = IoC::resolve('HTMLPurifier');
+$clean_output = $purifier->purify($bad_input);
 echo $clean_output; 
 // "Hello!"
 
