@@ -6,12 +6,18 @@ require_once 'HTMLPurifier.standalone.php';
 /**
  * 
  * @package Sanitize
- * @version 1.0
+ * @version 1.1
  * @author Rok B (wrapper for HTML Purifier)
  * @example Santize::purify($bad_code)
  * @license LGPL
  */
 class Sanitize {
+
+	/**
+	 * Singleton
+	 */
+	static $_instance = null;
+
 
 	/**
 	 * Add extra HTMLPurifier methods
@@ -22,8 +28,35 @@ class Sanitize {
 	 * @return HTMLPurifier
 	 */
 	public static function getInstance() {
-		$config = HTMLPurifier_Config::createDefault();
-		return new HTMLPurifier($config);
+		self::checkInstance();
+
+		return self::$_instance;
+	}
+
+	/**
+	 * Build new instance
+	 * @param type $config 
+	 * @return
+	 */
+	public static function setInstance( $config = null ) {
+
+		if ( is_null($config) ) {
+			$config = HTMLPurifier_Config::createDefault();
+		}
+
+		self::$_instance = new HTMLPurifier($config);
+		
+	}
+
+	/**
+	 * Create new instance if it doesn't allready exists
+	 * @param type $config 
+	 * @return
+	 */
+	public static function checkInstance( $config = null ) {
+		if ( self::$_instance == null ) {
+			self::setInstance($config);
+		}
 	}
 
 	/**
@@ -33,9 +66,9 @@ class Sanitize {
 	 */
 	public static function purify( $dirty_html )
 	{
-		$config = HTMLPurifier_Config::createDefault();
-		$purifier = new HTMLPurifier($config);
-		$clean_html = $purifier->purify($dirty_html);
+		self::checkInstance();
+		
+		$clean_html = self::$_instance->purify($dirty_html);
 
 		return $clean_html;
 	}
