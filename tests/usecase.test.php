@@ -6,9 +6,9 @@ class TestExample extends PHPUnit_Framework_TestCase {
 
     public function testCleanInput()
     {
-		$bad_input = 'Hello!<script>alert("Malicious popup!! Your coding skills suck!")</script>';
-		$clean_output = Sanitize::purify($bad_input);
-		$expected_output = 'Hello!';
+        $bad_input = 'Hello!<script>alert("Malicious popup!! Your coding skills suck!")</script>';
+        $clean_output = Sanitize::purify($bad_input);
+        $expected_output = 'Hello!';
 
         $this->assertTrue($clean_output === $expected_output);
     }
