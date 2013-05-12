@@ -4,7 +4,7 @@ Wrapper for HTML Purifier with the beauty of Laravel.
 
 ## Installation
 
-Install using the Artian CLI:
+Install using the Artisan CLI:
 
 	php artisan bundle:install sanitize
 
@@ -15,9 +15,11 @@ then edit **application/bundles.php** to autoload messages:
 
 return array(
 
-'sanitize' => array(
-	'auto' => true
-),
+	'sanitize' => array(
+		'auto' => true
+	),
+	
+);
 
 ```
 	
