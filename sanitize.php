@@ -54,7 +54,7 @@ class Sanitize {
 	 * @return
 	 */
 	public static function checkInstance( $config = null ) {
-		if ( self::$_instance == null ) {
+		if ( is_null(self::$_instance) ) {
 			self::setInstance($config);
 		}
 	}
