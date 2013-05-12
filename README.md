@@ -4,17 +4,22 @@ Wrapper for HTML Purifier with the beauty of Laravel.
 
 ## Installation
 
-Installation with Artisan CLI:
+Install using the Artian CLI:
 
-	php artisan bundle:install Sanitizer
+	php artisan bundle:install sanitize
 
-Manual installation:
+then edit **application/bundles.php** to autoload messages:
 
-Copy files into **bundles/sanitize**
+```php
+<?php
 
-then edit **application/bundles.php** to autoload sanitizer:
+return array(
 
-	'sanitize' => array('auto' => true),
+'sanitize' => array(
+	'auto' => true
+),
+
+```
 	
 You can implement required functions of HTML Purifier in sanitize.php.
 
@@ -25,14 +30,30 @@ You can implement required functions of HTML Purifier in sanitize.php.
 ```php
 <?php
 
-$bad_input = 'Hello!<script>alert("Malicious popup!! Your coding skills suck!")</script>';
+$bad_input = '<script>alert("Malicious popup!! Your coding skills suck!")</script>';
 $clean_output = Sanitize::purify($bad_input);
-echo $clean_output; 
-// "Hello!"
+echo $clean_output;
 
 ```
 
-## HTML Purifier
+## Note
+
+I didn't have to change any permissions, but here is a section from the HTMLPurifier documentation if you run into this issue.
+
+From HTML purifier documentation:
+
+5. Caching
+
+HTML Purifier generates some cache files (generally one or two) to speed up
+its execution. For maximum performance, make sure that
+library/HTMLPurifier/DefinitionCache/Serializer is writeable by the webserver.
+
+If you are in the library/ folder of HTML Purifier, you can set the
+appropriate permissions using:
+
+    chmod -R 0755 HTMLPurifier/DefinitionCache/Serializer
+
+## HTML Purifier, by Chris Corbyn
 
 HTML Purifier is a standards-compliant HTML filter library written in PHP. HTML Purifier will not only remove all malicious code (better known as XSS) with a thoroughly audited, secure yet permissive whitelist, it will also make sure your documents are standards compliant, something only achievable with a comprehensive knowledge of W3C's specifications. 
 It is released under the LGPL license.
